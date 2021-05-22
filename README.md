@@ -125,7 +125,7 @@ Progress stage:
 - Przemek Hinca / GitHub: [pshemekhinca](https://github.com/pshemekhinca)
 - Mateusz Kownacki [joker687](https://github.com/joker687)
 - Michał Przychodzień / GitHub: / GitHub: [MichalPrzychodzien](https://github.com/MichalPrzychodzien)
-- Ewa Szeszko [szezkoe](https://github.com/szeszkoe)
+- Ewa Szeszko [szeszkoe](https://github.com/szeszkoe)
 
 [Back to the Top ^](#FLASH2CARDS)
 
