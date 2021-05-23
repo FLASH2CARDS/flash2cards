@@ -101,9 +101,13 @@ Separate access for **registered** and **unregistered** user.
 
 ### How to run tests
 
-- unittest ```./python -m -v <test_file_name>```
+- unittest
   
-- pytest ```./pytest -v <test_file_name>```
+```./python -m -v <test_file_name>```
+  
+- pytest 
+  
+```./pytest -v <test_file_name>```
 
 [Back to the Top ^](#FLASH2CARDS)
 
@@ -113,7 +117,7 @@ Separate access for **registered** and **unregistered** user.
 
 ... really, a lot to do :)
 
-Progress stage:
+Progress:
 
 > First sprint started
 
