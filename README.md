@@ -19,7 +19,7 @@ In this flashcards universe registered user can:
 - search flashcards by demanded subjects, 
 - use flashcards sets prepared by others,
 - create own cards and collect them into subject sets,
-- share own cards with others or leave them private,
+- share own cards with others or keep them private,
 
 ... and the most important 
 
@@ -62,7 +62,7 @@ Separate access for **registered** and **unregistered** user.
 >- set flashcards / sets status to private or public
 >- comment and rate others single flashcards and others sets,
 >- study chosen flashcards set with preferred settings,
->- follow the progress statistics, 
+>- follow up the progress statistics, 
 >- export flashcards to txt/csv file, 
 >- import flashcards from txt/csv file.
 
