@@ -35,8 +35,6 @@ Clone this repo:
 
 Install all dependencies separately, or all at once from file:
 
-requiremts.txt
-
 ``` pip install -r requirements.txt```
 
 Run the app:
