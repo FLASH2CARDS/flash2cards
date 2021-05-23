@@ -35,7 +35,7 @@ Clone this repo:
 
 Install all dependencies separately, or all at once from file:
 
-```requiremts.txt```
+requiremts.txt --> ```$ pip install -r requirements.txt```
 
 Run the app:
 
@@ -89,9 +89,10 @@ Separate access for **registered** and **unregistered** user.
 
 - Python 3.8
 - Django 3.2
+- python-dotenv 0.17
 - mySQL
-- Unittest
-- Pytest 6.2
+- unittest
+- pytest 6.2
 - JSON ???
 
 [Back to the Top ^](#FLASH2CARDS)
