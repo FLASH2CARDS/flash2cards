@@ -31,11 +31,13 @@ In this flashcards universe registered user can:
 
 Clone this repo:
 
-```$ git clone https://github.com/FLASH2CARDS/flash2cards.git```
+``` git clone https://github.com/FLASH2CARDS/flash2cards.git```
 
 Install all dependencies separately, or all at once from file:
 
-requiremts.txt --> ```$ pip install -r requirements.txt```
+requiremts.txt
+
+``` pip install -r requirements.txt```
 
 Run the app:
 
