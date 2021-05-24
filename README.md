@@ -145,8 +145,8 @@ Progress:
 - Kseniia Galaieva / GitHub: [KseniiaGal](https://github.com/KseniiaGal)
 - Przemek Hinca / GitHub: [pshemekhinca](https://github.com/pshemekhinca)
 - Mateusz Kownacki [joker687](https://github.com/joker687)
-- Michał Przychodzień / GitHub: / GitHub: [MichalPrzychodzien](https://github.com/MichalPrzychodzien)
-- Ewa Szeszko [szeszkoe](https://github.com/szeszkoe)
+- Michał Przychodzień / GitHub: [MichalPrzychodzien](https://github.com/MichalPrzychodzien)
+- Ewa Szeszko / GitHub: [szeszkoe](https://github.com/szeszkoe)
 
 [Back to the Top ^](#FLASH2CARDS)
 
