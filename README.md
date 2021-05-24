@@ -31,11 +31,15 @@ In this flashcards universe registered user can:
 
 Clone this repo:
 
-``` git clone https://github.com/FLASH2CARDS/flash2cards.git```
+``` 
+git clone https://github.com/FLASH2CARDS/flash2cards.git
+```
 
 Install all dependencies separately, or all at once from file:
 
-``` pip install -r requirements.txt```
+``` 
+pip install -r requirements.txt
+```
 
 Run the app:
 
@@ -103,11 +107,15 @@ Separate access for **registered** and **unregistered** user.
 
 - unittest
   
-```./python -m -v <test_file_name>```
+```
+./python -m -v <test_file_name>
+```
   
 - pytest 
   
-```./pytest -v <test_file_name>```
+```
+./pytest -v <test_file_name>
+```
 
 [Back to the Top ^](#FLASH2CARDS)
 
