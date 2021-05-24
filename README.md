@@ -2,7 +2,7 @@
 
 ---
 
-### * Table of Contents *
+###  Table of Contents 
 
 - [Getting started](#Getting-started)
 - [App features](#App-features)
@@ -35,15 +35,23 @@ Clone this repo:
 git clone https://github.com/FLASH2CARDS/flash2cards.git
 ```
 
+Add a virtual environment in the project root and activate it:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
 Install all dependencies separately, or all at once from file:
 
 ``` 
 pip install -r requirements.txt
 ```
 
-Run the app:
+Run development server:
 
-```info soon```
+```
+python manage.py runserver
+```
 
 [Back to the Top ^](#FLASH2CARDS)
 
