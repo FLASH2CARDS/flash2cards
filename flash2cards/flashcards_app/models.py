@@ -32,7 +32,6 @@ class Flashcard(models.Model):
 
 class FlashcardSet(models.Model):
     set_name = models.TextField(max_length=45, blank=False)
-    privacy_status = models.TextField(blank=False)
     user = models.ManyToManyField(User)
     flashcard = models.ManyToManyField(Flashcard)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
