@@ -8,3 +8,6 @@ CATEGORIES = (
     ('Technical subjects', 'Technical subjects'),
     ('Science', 'Science'),
 )
+
+SUBCATEORIES = ()
+
