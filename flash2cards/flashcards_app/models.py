@@ -1,7 +1,95 @@
 from django.db import models
 from .categories import CATEGORIES
-from django.contrib.auth.models import User
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from ckeditor.fields import RichTextField
+
+
+class UserManager(BaseUserManager):
+
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError('you must enter an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+
+        user.set_password(password)
+        user.save(using=self.db)
+        return user
+
+    def create_staff_user(self, email, password):
+
+        if not email:
+            raise ValueError('you must enter an email address')
+
+        user = self.create_user(
+            email,
+            password=password
+        )
+
+        user.staff = True
+        user.save(using=self.db)
+        return user
+
+    def create_superuser(self, email, password):
+
+        if not email:
+            raise ValueError('you must enter an email address')
+
+        user = self.create_user(
+            email,
+            password=password
+        )
+
+        user.staff = True
+        user.save(using=self.db)
+        return user
+
+
+class User(AbstractBaseUser):
+    object = UserManager()
+    email = models.EmailField(
+        verbose_name='your mail adress',  # optional, inform what is a login
+        max_length=255,
+        unique=True
+    )
+    name = models.CharField(max_length=255, null=True, blank=True)  # optional, maybe nick or something?
+    description = models.TextField(null=True, blank=True, default="write something about yourself")  # optional
+    country = models.CharField(max_length=255, null=True, blank=True)  # optional, maybe location or something?
+    is_active = models.BooleanField(default=True)
+    staff = models.BooleanField(default=False)  # something like admin
+    admin = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def get_full_name(self):
+        return self.email
+
+    def get_short_name(self):
+        return self.email
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the users have a specific permisions?"
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permisions to viev the app 'app_label'?"
+        return True
+
+    @property
+    def is_staff(self):
+        "Does the user is staff?"
+        return self.staff
+
+    @property
+    def is_admin(self):
+        "Does the user is admin?"
+        return self.admin
 
 
 class Category(models.Model):
@@ -54,7 +142,7 @@ class Flashcard(models.Model):
     """
     avers = RichTextField(blank=False, unique=True)
     revers = RichTextField(blank=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -99,13 +187,19 @@ class Comment(models.Model):
     """Comment class for taking in comments per flashcard.
     Attributes:
         1. flashcard (ForeignKey to Flashcard model) The field has a relationship of many (comments) to one (flashcard).
+        1. flashcardset (ForeignKey to FlashcardSet model) The field has a relationship of many (comments) to one (flashcardset).
         2. user (ManyToManyField to User model) The field has a relationship of many (flashcards sets) to many (users).
         3. comment_body (RichTextField) Takes in comment text. Required.
         4. creation_date (DateTimeField) Takes in the date and time for flashcard creation (completing automatically).
     """
+    flashcard = models.ForeignKey(Flashcard, on_delete=models.SET_NULL, null=True)
+    flashcardset = models.ForeignKey(FlashcardSet, on_delete=models.SET_NULL, null=True)
     user = models.ManyToManyField(User)
     comment_body = RichTextField(blank=False)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user} commented on {self.creation_date}"
+
+    class Meta:
+        ordering = ['creation_date']
