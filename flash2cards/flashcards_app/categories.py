@@ -9,5 +9,5 @@ CATEGORIES = (
     ('Science', 'Science'),
 )
 
-SUBCATEORIES = ()
+SUBCATEGORIES = ()
 
