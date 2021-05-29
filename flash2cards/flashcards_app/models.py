@@ -2,6 +2,23 @@ from django.db import models
 from .categories import CATEGORIES
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Group
+
+
+# class Novice(Group):
+#    novice_group, created = Group.objects.get_or_create(name="Novice")
+#   novice_group.permissions.set()
+
+
+# class Medium(Group):
+#   medium_group, created = Group.objects.get_or_create(name="Medium")
+#  medium_group.permissions.set()
+
+# class HightLevel(Group):
+# hightlevel_group, created = Group.objects.get_or
+# hightlevel_group.permision.set()
 
 
 class UserManager(BaseUserManager):
@@ -48,7 +65,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    object = UserManager()
+    objects = UserManager()
     email = models.EmailField(
         verbose_name='your mail adress',  # optional, inform what is a login
         max_length=255,
