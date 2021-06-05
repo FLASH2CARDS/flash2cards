@@ -101,6 +101,7 @@ Separate access for **registered** and **unregistered** user.
 
 - Python 3.8
 - Django 3.2
+- django-mptt==0.12.0
 - python-dotenv 0.17
 - mySQL
 - unittest

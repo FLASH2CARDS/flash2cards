@@ -85,6 +85,14 @@ WSGI_APPLICATION = 'flash2cards.wsgi.application'
 
 DATABASES = {
     'default': {
+        'NAME': 'flash2cards',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }

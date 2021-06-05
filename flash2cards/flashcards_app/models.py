@@ -5,6 +5,7 @@ from ckeditor.fields import RichTextField
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Group
+from mptt.models import MPTTModel, TreeForeignKey
 
 
 # class Novice(Group):
@@ -109,41 +110,21 @@ class User(AbstractBaseUser):
         return self.admin
 
 
-class Category(models.Model):
-    """Category class for setting main Category of flashcard or flashcards set.
+class Category(MPTTModel):
+    """Category class for setting main Category and subcategory of flashcard or flashcards set.
     Attribute:
-        1. category_name (CharField) Takes in main category name.
+        1. category_name (CharField) With MPTT library takes names for main categories and subcategories(as children).
     """
-    category_name = models.CharField(max_length=20, choices=CATEGORIES, default="Language")
+    category_name = models.CharField(max_length=50, null=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     def __str__(self):
-        return f"{self.category_name}"
+        return self.category_name
 
-    class Meta:
-        ordering = ['category_name']
+    class MPTTMeta:
+        order_insertion_by = ['category_name']
         verbose_name = "Category"
         verbose_name_plural = "Categories"
-
-
-class SubCategory(models.Model):
-    """Subcategory class for setting main subcategory of flashcard or flashcards set.  Subcategories are defined
-    separately within each main category.
-    Attribute:
-        1. category (ForeignKey to Category model) The field has a relationship of many (subctagories) to one (category).
-        2. subcategory_name (CharField) Takes in subcategory name.
-    """
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    subcategory_name = models.CharField(max_length=20, choices=CATEGORIES, default="Language")
-
-    # TODO: SUBCATEGORIES choices
-
-    def __str__(self):
-        return f"{self.subcategory_name}"
-
-    class Meta:
-        ordering = ['subcategory_name']
-        verbose_name = "Sub-Category"
-        verbose_name_plural = "Sub-Categories"
 
 
 class Flashcard(models.Model):
@@ -153,15 +134,13 @@ class Flashcard(models.Model):
         2. revers (RichTextField) Takes in revers content.Required.
         3. user (ForeignKey to User model) The field has a relationship of many (flashcards) to one (user).
         4. category (ForeignKey to Category model) The field has a relationship of many (flashcards) to one (category).
-        5. subctegory (ForeignKey to SubCategory model) The field has a relationship of many (flashcards) to one (subcategory).
-        6. creation_date (DateTimeField) Takes in the date and time for flashcard creation (completing automatically).
-        7. modification_date (DateTimeField) Takes in the date and time for flashcard update (completing automatically).
+        5. creation_date (DateTimeField) Takes in the date and time for flashcard creation (completing automatically).
+        6. modification_date (DateTimeField) Takes in the date and time for flashcard update (completing automatically).
     """
-    avers = RichTextField(blank=False, unique=True)
-    revers = RichTextField(blank=False)
+    avers = RichTextField(blank=True, null=True, unique=True)
+    revers = RichTextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     modification_date = models.DateTimeField(auto_now=True)
 
@@ -180,16 +159,14 @@ class FlashcardSet(models.Model):
         3. user (ManyToManyField to User model) The field has a relationship of many (flashcards sets) to many (users).
         4. flashcard (ManyToManyField to Flashcard model) The field has a relationship of many (flashcards sets) to many (flashcards).
         5. category (ForeignKey to Category model) The field has a relationship of many (flashcard sets) to one (category).
-        6. subctegory (ForeignKey to SubCategory model) The field has a relationship of many (flashcards sets) to one (subcategory).
-        7. creation_date (DateTimeField) Takes in the date and time for flashcard creation (completing automatically).
-        8. modification_date (DateTimeField) Takes in the date and time for flashcard update (completing automatically).
+        6. creation_date (DateTimeField) Takes in the date and time for flashcard creation (completing automatically).
+        7. modification_date (DateTimeField) Takes in the date and time for flashcard update (completing automatically).
     """
     set_name = models.TextField(max_length=45, blank=False)
     is_private = models.BooleanField(verbose_name="Private ?", default=False)
     user = models.ManyToManyField(User)
     flashcard = models.ManyToManyField(Flashcard)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     modification_date = models.DateTimeField(auto_now=True)
 
