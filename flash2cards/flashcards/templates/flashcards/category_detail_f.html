@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends 'flashcards/base.html' %}</title>
+
+    {% block title %}Fiszki z kategorii{% endblock %}
+
+    {% block main_content %}
+    <br>
+    <h4>{{ "Fiszki z kategorii: " }}{{ object.category_name | upper }}</h4>
+    <hr>
+    <!--{% if object.category %}-->
+
+    <table>
+        <tr>
+            <th><span class="category"> &#10137;{{ " Awers fiszki" | upper }}</span></th>
+            <th><span class="category">{{ "| Utworzona przez: " | upper }}</span></th>
+        </tr>
+        {% for card in object.flashcard_set.all %}
+        <div class="flashcard-in-list">
+            <tr>
+                <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">
+                    <span class="tabl_item">&#10137; {{ card.avers }}</span></a>
+                </td>
+                <td><span class="category"> {{ card.user }} </span></td>
+            </tr>
+
+        </div>
+        {% endfor %}
+    </table>
+
+    <!--{% else %}-->
+    <!-- <h4> Nie dodano jeszcze żadnej fiszki w tej kategorii lub nie zdefiniowano kategorii</h4>-->
+    <!--{% endif %}-->
+
+    <br>
+    <hr>
+    {% if page_obj.has_next %}
+    <div class="page-flip">
+        {% if page_obj.has_previous %}
+        <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
+        {% endif %}
+
+        <span class="category"> Strona {{ page_obj.number }} </span>
+
+        {% if page_obj.has_next %}
+        <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
+        {% endif %}
+    </div>
+    {% endif %}
+    <hr>
+    <a href="{% url 'flashcards:flashcards' %}">
+        <button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button>
+    </a>
+    {% endblock %}
+</head>
+<body>
+
+</body>
+</html>
