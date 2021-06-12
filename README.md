@@ -29,7 +29,7 @@ In this flashcards universe registered user can:
 
 ### Getting started
 
-Clone this repo:
+Clone the repository:
 
 ``` 
 git clone https://github.com/FLASH2CARDS/flash2cards.git
@@ -41,7 +41,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-Install all dependencies separately, or all at once from file:
+Install all dependencies separately, or all at once from the file:
 
 ``` 
 pip install -r requirements.txt
@@ -58,7 +58,7 @@ python manage.py runserver
 ---
 ### App features
 
-Separate access for **registered** and **unregistered** user.
+Separate access for **_registered_** and **_unregistered_** user.
 
 > **Unregistered user** can:
 >- search flashcards by categories / subjects / words,
@@ -101,11 +101,16 @@ Separate access for **registered** and **unregistered** user.
 
 - Python 3.8
 - Django 3.2
+- django-allauth 0.42.0
+- django-ckeditor 6.0
+- django-mptt 0.12.0
 - python-dotenv 0.17
-- mySQL
+- mySQL (mysqlclient 2.0.3)
 - unittest
 - pytest 6.2
-- JSON ???
+- JSON
+
+
 
 [Back to the Top ^](#FLASH2CARDS)
 

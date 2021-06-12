@@ -1,0 +1,19 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %} Edycja treści fiszki {% endblock %}
+
+{% block main_content %}
+<h4> {{ "edycja fiszki" | upper }}</h4>
+
+<div class="form-group">
+<form method="POST" novalidate>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success btn-sm">Zapisz zmiany</button>
+        <a href="{% url 'flashcards:flashcards' %}"><button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button></a>
+
+</form>
+</div>
+
+{% endblock %}

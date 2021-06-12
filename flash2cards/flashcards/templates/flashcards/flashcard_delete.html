@@ -1,0 +1,23 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %} Usuń fiszkę z bazy fiszek {% endblock %}
+
+{% block main_content %}
+<br>
+<h4> {{ "Usuwanie fiszki" | upper }}</h4><br>
+<h4> Usuwanie fiszki: {{ flashcard.avers }}</h4>
+<br>
+<div class="page-flip">
+<form method="POST" novalidate>
+
+        {% csrf_token %}
+        <hr>
+        <h6>Po usunięciu treść fiszki nie będzie dostępna dla Ciebie i innych użytkowników!</h6>
+        <hr>
+        <button class="btn btn-danger btn-sm">! USUŃ FISZKĘ !</button>
+        <a href="{% url 'flashcards:flashcards' %}"><button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button></a>
+
+</form>
+</div>
+
+{% endblock %}
