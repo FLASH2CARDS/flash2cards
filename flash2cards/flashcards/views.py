@@ -26,7 +26,8 @@ class FlashcardDetailView(DetailView):
 
 
 class FlashcardSetDetailView(DetailView):
-    pass
+    model = FlashcardSet
+    template_name = 'flashcards/flashcardset_detail.html'
 
 
 class FlashcardCreateView(CreateView):
@@ -62,3 +63,8 @@ class FlashcardSetDeleteView(DeleteView):
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'flashcards/category_detail.html'
+
+
+class SetCategoryDetailView(DetailView):
+    model = Category
+    template_name = 'flashcards/flashcardset_category.html'

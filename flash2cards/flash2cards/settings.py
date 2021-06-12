@@ -37,7 +37,7 @@ LOCAL_APPS = ['flashcards.apps.FlashcardsAppConfig',
 THIRD_PARTY_APPS = [
     'ckeditor',
     'ckeditor_uploader',
-    ]
+]
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -50,7 +50,7 @@ DJANGO_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    ]
+]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 
@@ -171,3 +171,4 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'flashcards.forms.SignupForm'
