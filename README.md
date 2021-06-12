@@ -101,12 +101,16 @@ Separate access for **_registered_** and **_unregistered_** user.
 
 - Python 3.8
 - Django 3.2
-- django-mptt==0.12.0
+- django-allauth 0.42.0
+- django-ckeditor 6.0
+- django-mptt 0.12.0
 - python-dotenv 0.17
-- mySQL
+- mySQL (mysqlclient 2.0.3)
 - unittest
 - pytest 6.2
-- JSON ???
+- JSON
+
+
 
 [Back to the Top ^](#FLASH2CARDS)
 
