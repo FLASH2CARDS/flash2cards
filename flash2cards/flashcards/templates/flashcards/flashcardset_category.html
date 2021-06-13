@@ -1,0 +1,57 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %}Fiszki z kategorii{% endblock %}
+
+{% block main_content %}
+<br>
+<h4>{{ "Zestawy fiszek z kategorii: " }}{{ object.category_name | upper }}</h4>
+
+<hr>
+{% if object %}
+
+<table>
+    <tr>
+        <th><span class="category"> &#10137;{{ " Tytuł zestawu fiszek" | upper }}</span></th>
+        <th><span class="category">{{ "| Utworzony przez: " | upper }}</span></th>
+    </tr>
+
+    {% for flashcardset in object.flashcardset_set.all %}
+    <div class="flashcard-in-list">
+        <tr>
+            <td><a href="{% url 'flashcards:flashcard_detail' flashcardset.pk %}">
+                <span class="tabl_item">&#10137; {{ flashcardset.set_name }}</span></a>
+            </td>
+            <td><span class="category"> {{ flashcardset.user }}  </span></td>
+        </tr>
+
+    </div>
+    {% endfor %}
+
+</table>
+
+{% else %}
+   <h4> Nie dodano jeszcze żadnej fiszki w tej kategorii lub nie zdefiniowano kategorii</h4>
+{% endif %}
+
+<br>
+<hr>
+{% if page_obj.has_next %}
+<div class="page-flip">
+    {% if page_obj.has_previous %}
+    <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
+    {% endif %}
+
+    <span class="category">  Strona {{ page_obj.number }} </span>
+
+    {% if page_obj.has_next %}
+    <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
+    {% endif %}
+</div>
+{% endif %}
+<hr>
+<a href="{% url 'flashcards:flashcardsets' %}">
+    <button type="button" class="btn btn-secondary btn-sm">Powrót do listy zestawów fiszek</button>
+</a>
+{% endblock %}
+
+

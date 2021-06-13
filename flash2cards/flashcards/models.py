@@ -84,7 +84,7 @@ class FlashcardSet(models.Model):
     """
     set_name = models.TextField(max_length=45, blank=False)
     is_private = models.BooleanField(verbose_name="Private ?", default=False)
-    user = models.ManyToManyField(CustomUser)
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
     flashcard = models.ManyToManyField(Flashcard)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)

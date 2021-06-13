@@ -1,65 +1,43 @@
-body {
-    background-color: #07161F;
-    padding: 35px;
-    font-family: 'Roboto', sans-serif;
-}
+/*body {*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*}*/
 
-header {
-    font-weight: bold;
-    color: #ffa000;
-    padding: 10px 0px 10px 0px;
-    background-color: #133C3A;
-    text-align: center;
-    font-size: 20px;
-
-}
+/*header {*/
+/*    font-weight: bold;*/
+/*    color: #ffa000;*/
+/*    padding: 10px 0px 10px 0px;*/
+/*    background-color: #133C3A;*/
+/*    text-align: center;*/
+/*    font-size: 20px;*/
+/*}*/
 
 h4 {
     color: #632000;
     text-align: center;
     font-weight: bold;
-
 }
 
 h6 {
     color: red;
     text-align: center;
     font-weight: bold;
-
 }
 
 nav {
-    padding: 0px 0px 0px 0px;
+    padding: 5px 10px 5px 10px;
+}
+
+.navbar-expand-lg {
     background-color: #025250;
 }
 
-.menu {
-    padding: 10px 0px 10px 30px;
-}
-
-.menu-button {
-    display: inline-block;
-    padding: 0.35em 1.2em;
-    border: 0.1em solid #FC9F03;
-    border-radius: 5px;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.menu-button:hover {
-    color: #025250;
-    background-color: #FC9F03;
+.navbar-expand-lg .navbar-brand{
+    color: #FC9F03;
 }
 
 li a {
     color: #FC9F03;
 }
-
 
 a {
     /*font-style: italic;*/
@@ -85,7 +63,8 @@ a.page {
 }
 
 .container {
-    background-color: #FFB236;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(254,254,254,1) 48%, rgba(255,249,223,1) 100%);
     padding: 32px;
 }
 
@@ -99,8 +78,8 @@ p .link {
 
 td {
     padding: 5px 10px 5px 10px;
-    /*background-color: #ffc669;*/
 }
+
 .form-group, txtarea {
     width: 250px;
 }
@@ -114,18 +93,10 @@ td {
     font-size: 13px;
     color: #025250;
     text-decoration: none;
-    /*padding: 0px 10px 0px 10px;*/
-
 }
 
-/*tr:nth-child(even) {*/
-/*    background-color: #FFB049FF;*/
-/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);*/
-/*}*/
-
 tr:nth-child(odd) {
-    background-color: #ffaa36;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    background-color: rgba(226, 225, 225, 0.76);
 }
 
 .fcard {
