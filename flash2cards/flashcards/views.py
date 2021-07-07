@@ -2,8 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 
 from .models import Flashcard, FlashcardSet, Category
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .forms import FlashcardCreateForm
+
+
+class IndexPageView(TemplateView):
+    template_name = 'flashcards/index.html'
 
 
 class FlashcardsListView(ListView):

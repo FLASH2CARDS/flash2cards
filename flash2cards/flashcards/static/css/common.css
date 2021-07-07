@@ -40,14 +40,12 @@ li a {
 }
 
 a {
-    /*font-style: italic;*/
     font-size: 12px;
     color: #025250;
     text-decoration: none;
 }
 
 .category {
-    /*font-style: italic;*/
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     color: #632000;
@@ -60,12 +58,6 @@ a.flashcard-item {
 
 a.page {
     color: #025250;
-}
-
-.container {
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(254,254,254,1) 48%, rgba(255,249,223,1) 100%);
-    padding: 32px;
 }
 
 p .link {
