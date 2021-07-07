@@ -1,0 +1,161 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %} STRONA {% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <section class="section">
+        <div class="tile is-ancestor">
+
+            <!--###### Category selector ######-->
+            <div class="tile is-6 is-parent">
+                <div class="tile is-child box">
+                    <span>Select category:
+                        <div class="dropdown">
+                            <div class="dropdown-trigger">
+                                <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <span>CATEGORY</span>
+                                    <span class="icon is-small"><i class="fas fa-angle-down"
+                                                                   aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content">
+                                    <a href="#" class="dropdown-item">
+                                        Dropdown item
+                                    </a>
+                                    <a class="dropdown-item">
+                                        Other dropdown item
+                                    </a>
+                                    <a href="#" class="dropdown-item is-active">
+                                        Active dropdown item
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+            <!--###### Search input ######-->
+            <div class="tile is-parent">
+                <div class="tile is-child box">
+                    <div class="field">
+                        <p class="control has-icons-right">
+                            <input class="input" type="search" placeholder="Search by keyword/tag..."/>
+                            <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tile is-ancestor">
+            <div class="tile is-8 is-vertical is-parent">
+
+                <!--###### 10 last f-cards section ######-->
+                <div class="tile is-child card">
+                    <header class="card-header">
+                        <div class="tile has-background-grey-lighter">
+                            <p class="card-header-title">10 of lately created FLASHCARDS</p>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+
+                            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                                <tr>
+                                    <th><span class="category"> &#10137;{{ " Flashcard Avers" | upper }}</span></th>
+                                    <th><span class="category">{{ "Category " | upper }}</span></th>
+                                    <th><span class="category">{{ "Created by: " | upper }}</span></th>
+                                </tr>
+                                ten_flashcards = Flashcard.objects.all().order_by('-modification_date')[:10]
+                                {% for flashcard in flashcards_list %}
+                                <div class="flashcard-in-list">
+                                    <tr>
+                                        <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span
+                                                class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
+                                        </td>
+                                        <td><span class="category"><a
+                                                href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
+                                        </td>
+                                        <td><span class="category"> {{ flashcard.user }}  </span></td>
+                                    </tr>
+
+                                </div>
+
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <footer class="card-footer has-background-white-ter">
+                        <a href="#" class="card-footer-item">... go to all flashcards list</a>
+                    </footer>
+                </div>
+
+                <!--###### 10 last f-cards sets section ######-->
+                <div class="tile is-child card">
+                    <header class="card-header">
+                        <div class="tile has-background-grey-lighter">
+                            <p class="card-header-title">10 of lately created FLASHCARDS SETS</p>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <tr>
+            <th><span class="category">&#10137; {{ "Flashcard Set" | upper }}</span></th>
+            <th><span class="category">{{ "Category" | upper }}</span></th>
+            <th><span class="category">{{ "Created by:" | upper }}</span></th>
+        </tr>
+        {% for flashcardset in flashcardsets %}
+        <tr>
+            <td><a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}"> <span class="tabl_item">&#10137; {{ flashcardset.set_name }}</span>
+            </a></td>
+            <td><span class="category"><a href="{% url 'flashcards:set_category_detail' flashcardset.category.pk %}">{{ flashcardset.category }}</a></span>
+            </td>
+            <td><span class="category">{{ flashcardset.user }}  </span></td>
+        </tr>
+        {% endfor %}
+    </table>
+                        </div>
+                    </div>
+                    <footer class="card-footer has-background-white-ter">
+                        <a href="#" class="card-footer-item ">... go to all flashcards sets list</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="tile is-vertical is-parent">
+
+                <!--###### Statistics ######-->
+                <div class="tile is-child card">
+                    <header class="card-header">
+                        <div class="tile has-background-grey-lighter">
+                            <p class="card-header-title">FLASHCARDS statistics</p>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                        </div>
+                    </div>
+                </div>
+
+                <!--###### recent comments ######-->
+                <div class="tile is-child card">
+                    <header class="card-header">
+                        <div class="tile has-background-grey-lighter">
+                            <p class="card-header-title">Recently commented</p>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
