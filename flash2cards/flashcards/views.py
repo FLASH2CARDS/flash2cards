@@ -16,6 +16,11 @@ class FlashcardsListView(ListView):
     context_object_name = 'flashcards'
     paginate_by = 10
 
+    # posts = Flashcard.objects.all().order_by('-modification_date')
+    # @property
+    # def flashcards_for_frontpage(self):
+    #     return self.flashcards.order_by('-date_posted')[:5]
+
 
 class FlashcardSetListView(ListView):
     model = FlashcardSet
@@ -72,3 +77,10 @@ class CategoryDetailView(DetailView):
 class SetCategoryDetailView(DetailView):
     model = Category
     template_name = 'flashcards/flashcardset_category.html'
+
+
+def ten_fcards(request):
+    # get the blog posts that are published
+    posts = Flashcard.objects.all().order_by('-modification_date')
+    # now return the rendered template
+    return render(request, 'blog/about.html', {'post': posts})

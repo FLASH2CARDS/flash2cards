@@ -70,6 +70,10 @@ class Flashcard(models.Model):
     class Meta:
         ordering = ['-modification_date']
 
+    @property
+    def flashcards_for_frontpage(self):
+        return self.avers.order_by('-modification_date')[:5]
+
 
 class FlashcardSet(models.Model):
     """FlashcardSet class to create a single set of several flashcard.
