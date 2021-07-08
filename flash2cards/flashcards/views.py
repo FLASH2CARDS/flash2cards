@@ -6,20 +6,20 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .forms import FlashcardCreateForm
 
 
-class IndexPageView(TemplateView):
-    template_name = 'flashcards/index.html'
-
-
 class FlashcardsListView(ListView):
     model = Flashcard
     template_name = 'flashcards/flashcard_list.html'
     context_object_name = 'flashcards'
     paginate_by = 10
 
-    # posts = Flashcard.objects.all().order_by('-modification_date')
-    # @property
-    # def flashcards_for_frontpage(self):
-    #     return self.flashcards.order_by('-date_posted')[:5]
+
+def index_multi_sections(request):
+    cards = Flashcard.objects.all()
+    sets = FlashcardSet.objects.all()
+    fcards = Flashcard.objects.all().order_by('-modification_date')[:7]
+    fsets = FlashcardSet.objects.all().order_by('-modification_date')[:7]
+    context = {'flashcards': fcards, "flashcardsets": fsets, "cards_count": cards.count(), "sets_count": sets.count()}
+    return render(request, "flashcards/index.html", context)
 
 
 class FlashcardSetListView(ListView):
@@ -77,10 +77,3 @@ class CategoryDetailView(DetailView):
 class SetCategoryDetailView(DetailView):
     model = Category
     template_name = 'flashcards/flashcardset_category.html'
-
-
-def ten_fcards(request):
-    # get the blog posts that are published
-    posts = Flashcard.objects.all().order_by('-modification_date')
-    # now return the rendered template
-    return render(request, 'blog/about.html', {'post': posts})

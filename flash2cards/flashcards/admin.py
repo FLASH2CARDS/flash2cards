@@ -23,6 +23,7 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
+
 class FlashcardsAdmin(admin.ModelAdmin):
     list_display = ('category', 'avers', 'user')
     list_filter = ('category', 'user')

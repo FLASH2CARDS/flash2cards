@@ -20,4 +20,3 @@ urlpatterns = [
     path('flashcardset/<int:pk>', FlashcardSetDetailView.as_view(), name='flashcardset_detail')
 
 ]
-

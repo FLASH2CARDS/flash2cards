@@ -15,7 +15,7 @@
 <body>
 <nav class="navbar is-spaced has-shadow is-fixed-top">
     <div class="navbar-brand">
-        <a href="#">
+        <a href="{% url 'flashcards:index' %}">
             <figure class="image is-160x60">
                 <img src="{% static 'img/cards-img2.png' %}" alt="Flash2card logo">
             </figure>
@@ -27,7 +27,7 @@
             </span>
     </div>
     <div class="navbar-center">
-        dddddd
+
     </div>
 
     <div class="navbar-menu" id="navMenu">
@@ -39,8 +39,8 @@
                     Flashcards</span>
                 </a>
                 <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="{% url 'flashcards:flashcards_list' %}">Flashcards list</a>
-                    <a class="navbar-item" href="{% url 'flashcards:flashcardsets' %}">Flashcards sets list </a>
+                    <a class="navbar-item" href="{% url 'flashcards:flashcards' %}">Flashcards list</a>
+                    <a class="navbar-item" href="{% url 'flashcards:flashcardsets_list' %}">Flashcards sets list </a>
                     <hr class="navbar-divider">
                 </div>
             </div>

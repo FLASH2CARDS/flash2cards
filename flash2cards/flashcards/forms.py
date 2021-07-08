@@ -40,3 +40,4 @@ class FlashcardCreateForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
             'user': forms.Select(attrs={'class': 'form-control'})
         }
+

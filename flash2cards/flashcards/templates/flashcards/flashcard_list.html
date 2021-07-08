@@ -1,39 +1,40 @@
 {% extends 'flashcards/base.html' %}
 
-{% block title %}Lista FISZEK{% endblock %}
+{% block title %}FLASHCARDS LIST{% endblock %}
 
 {% block main_content %}
 <div class="section">
-<br>
-<h4>{{ "Lista wszystkich fiszek" | upper }}</h4>
-<hr>
-{% if flashcards %}
+    <br>
+    <h4>{{ "FLASHCARDS LIST" | upper }}</h4>
+    <hr>
+    {% if flashcards %}
 
-<table>
-    <tr>
-        <th><span class="category"> &#10137;{{ " Awers fiszki" | upper }}</span></th>
-        <th><span class="category">{{ "| Kategoria " | upper }}</span></th>
-        <th><span class="category">{{ "| Utworzona przez: " | upper }}</span></th>
-    </tr>
-    {% for flashcard in flashcards %}
-    <div class="flashcard-in-list">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <tr>
-            <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
-            </td>
-            <td><span class="category"><a href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
-            </td>
-            <td><span class="category"> {{ flashcard.user }}  </span></td>
+            <th><span class="category"> &#10137;{{ " Flashcard Avers" | upper }}</span></th>
+            <th><span class="category">{{ "| Category " | upper }}</span></th>
+            <th><span class="category">{{ "| Created by: " | upper }}</span></th>
         </tr>
+        {% for flashcard in flashcards %}
+        <div class="flashcard-in-list">
+            <tr>
+                <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
+                </td>
+                <td><span class="category"><a
+                        href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
+                </td>
+                <td><span class="category"> {{ flashcard.user }}  </span></td>
+            </tr>
 
-    </div>
+        </div>
 
-    {% endfor %}
-</table>
+        {% endfor %}
+    </table>
 
-{% else %}
-Nie dodano jeszcze żadnej fiszki
-{% endif %}
-</div>
+    {% else %}
+    Sorry. No flashacard created yet!
+    {% endif %}
+
 <br>
 <hr>
 {% if page_obj.has_next or page_obj.has_previous %}
@@ -42,7 +43,7 @@ Nie dodano jeszcze żadnej fiszki
     <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
     {% endif %}
 
-    <span class="category">  Strona {{ page_obj.number }} </span>
+    <span class="category">  Page {{ page_obj.number }} </span>
 
     {% if page_obj.has_next %}
     <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
@@ -50,4 +51,5 @@ Nie dodano jeszcze żadnej fiszki
 </div>
 <hr>
 {% endif %}
+</div>
 {% endblock %}
