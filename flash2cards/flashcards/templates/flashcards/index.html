@@ -52,7 +52,7 @@
         <div class="tile is-ancestor">
             <div class="tile is-8 is-vertical is-parent">
 
-                <!--###### 10 last f-cards section ######-->
+                <!--###### 7 last f-cards section ######-->
                 <div class="tile is-child card">
                     <header class="card-header">
                         <div class="tile has-background-grey-lighter">
@@ -63,11 +63,13 @@
                         <div class="content">
 
                             <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                                <thead>
                                 <tr>
                                     <th><span class="category"> &#10137;{{ " Flashcard Avers" | upper }}</span></th>
                                     <th><span class="category">{{ "Category " | upper }}</span></th>
                                     <th><span class="category">{{ "Created by: " | upper }}</span></th>
                                 </tr>
+                                </thead>
                                 <!--                                ten_flashcards = Flashcard.objects.all().order_by('-modification_date')[:10]-->
                                 {% for flashcard in flashcards %}
                                 <div class="flashcard-in-list">
@@ -93,7 +95,7 @@
                     </footer>
                 </div>
 
-                <!--###### 10 last f-cards sets section ######-->
+                <!--###### 7 last f-cards sets section ######-->
                 <div class="tile is-child card">
                     <header class="card-header">
                         <div class="tile has-background-grey-lighter">
@@ -144,9 +146,9 @@
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            <p class="box is-size-6 is-size-7-touch">Flashcards created.<br>
+                            <p class="box is-size-7-touch">Flashcards created.<br>
                                 <span class="has-text-weight-bold">Total: {{ cards_count }}</span></p>
-                            <p class="box is-size-6 is-size-7-touch">Flashcards Sets created.<br>
+                            <p class="box is-size-7-touch">Flashcards Sets created.<br>
                                 <span class="has-text-weight-bold">Total: {{ sets_count }}</span></p>
                         </div>
                     </div>

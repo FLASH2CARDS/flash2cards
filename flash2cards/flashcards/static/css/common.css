@@ -13,17 +13,25 @@ h6 {
 
 .navbar {
     padding: 1rem 2rem 1rem 2rem;
-    background: linear-gradient(90deg, rgba(195,81,0,1) 0%, rgba(255,199,42,1) 12%, rgba(255,179,0,1) 18%, rgba(195,81,0,1) 100%);
+    background: linear-gradient(90deg, rgba(195, 81, 0, 1) 0%, rgba(255, 199, 42, 1) 12%, rgba(255, 179, 0, 1) 18%, rgba(195, 81, 0, 1) 100%);
+    /*background: linear-gradient(180deg, rgba(255,179,0,0.6979166666666667) 0%, rgba(255,199,42,0.6951155462184874) 41%, rgba(195,81,0,0.7035189075630253) 100%);*/
     border-bottom: 1px solid rgb(201, 201, 201);
 }
 
+.tile.is-child.box.has-background-white-ter {
+    background: linear-gradient(180deg, rgba(218,218,218,1) 0%, rgba(244,244,244,1) 25%, rgba(218,218,218,1) 100%);
+}
+
+.tile.has-background-grey-lighter {
+    background: linear-gradient(180deg, rgba(218,218,218,1) 0%, rgba(244,244,244,1) 25%, rgba(218,218,218,1) 100%);
+}
 
 li a {
     color: #FC9F03;
 }
 
 a {
-    font-size: 12px;
+    font-size: 14px;
     color: #025250;
     text-decoration: none;
 }
@@ -65,14 +73,10 @@ td {
 }
 
 .tabl_item {
-    font-size: 13px;
     color: #025250;
     text-decoration: none;
 }
 
-tr:nth-child(odd) {
-    background-color: rgba(226, 225, 225, 0.76);
-}
 
 .fcard {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

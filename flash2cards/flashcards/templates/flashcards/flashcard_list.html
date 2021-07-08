@@ -18,10 +18,10 @@
         {% for flashcard in flashcards %}
         <div class="flashcard-in-list">
             <tr>
-                <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
+                <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span class="is-size-6 is-size-7-touch tabl_item">&#10137; {{ flashcard.avers }}</span></a>
                 </td>
                 <td><span class="category"><a
-                        href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
+                        href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong  class="is-size-6 is-size-7-touch">{{ flashcard.category }}</strong></a></span>
                 </td>
                 <td><span class="category"> {{ flashcard.user }}  </span></td>
             </tr>

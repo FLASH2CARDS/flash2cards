@@ -6,7 +6,7 @@
 <div class="section">
     <br>
     <h4>{{ "Lista zestawów fiszek" | upper }}</h4>
-
+    <br>
     {% if flashcardsets %}
 
 
@@ -19,9 +19,15 @@
         </tr>
         {% for flashcardset in flashcardsets %}
         <tr>
-            <td><a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}"> <span class="tabl_item">&#10137; {{ flashcardset.set_name }}</span>
-            </a></td>
-            <td><span class="category"><a href="{% url 'flashcards:set_category_detail' flashcardset.category.pk %}">{{ flashcardset.category }}</a></span>
+            <td>
+                <a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}">
+                    <span class="is-size-6 is-size-7-touch">&#10137; {{ flashcardset.set_name }}</span>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'flashcards:set_category_detail' flashcardset.category.pk %}">
+                    <span class="is-size-6 is-size-7-touch">{{ flashcardset.category }}</span>
+                </a>
             </td>
             <td><span class="category">{{ flashcardset.user }}  </span></td>
         </tr>
