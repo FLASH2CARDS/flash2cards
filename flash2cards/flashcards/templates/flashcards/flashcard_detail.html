@@ -9,30 +9,36 @@
 <span class="category">Utworzona przez: {{ flashcard.user }} </span><br>
 <span class="category">Data ostatniej edycji: {{ flashcard.modification_date|date:"Y-m-d" }}</span>
 
-<hr>
+        <hr>
 
-<div class="card border-primary mb-3" style="max-width: 18rem;">
-    <div class="fcard">
-        <div class="card-header">AVERS</div>
-        <div class="card-body text-primary">
-            <p class="card-text">{{ flashcard.avers }}</p>
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="fcard">
+                <div class="card-header">AVERS</div>
+                <div class="card-body text-primary">
+                    <p class="card-text">{{ flashcard.avers }}</p>
+                </div>
+            </div>
         </div>
+
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="fcard">
+                <div class="card-header">REVERS</div>
+                <div class="card-body text-success">
+                    <p class="card-text">{{ flashcard.revers }}</p>
+                </div>
+            </div>
+        </div>
+        <!--<hr>-->
+        <a href="{% url 'flashcards:flashcards' %}">
+            <button type="button" class="btn btn-secondary btn-sm">Back to flashcards list</button>
+        </a>
+        <a href="{% url 'flashcards:flashcard_update' flashcard.pk %}">
+            <button type="button" class="btn btn-success btn-sm">EDIT FLASHCARD</button>
+        </a>
+        <a href="{% url 'flashcards:flashcard_delete' flashcard.pk %}">
+            <button type="button" class="btn btn-danger btn-sm">DELETE FLASHCARD</button>
+        </a>
     </div>
 </div>
-
-<div class="card border-success mb-3" style="max-width: 18rem;">
-    <div class="fcard">
-        <div class="card-header">REVERS</div>
-        <div class="card-body text-success">
-            <p class="card-text">{{ flashcard.revers }}</p>
-        </div>
-    </div>
-</div>
-<!--<hr>-->
-<a href="{% url 'flashcards:flashcards' %}"><button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button></a>
-<a href="{% url 'flashcards:flashcard_update' flashcard.pk %}"><button type="button" class="btn btn-success btn-sm">EDYTUJ TREŚĆ FISZKI</button></a>
-<a href="{% url 'flashcards:flashcard_delete' flashcard.pk %}"><button type="button" class="btn btn-danger btn-sm">USUŃ FISZKĘ</button></a>
-
-
 {% endblock %}
 
