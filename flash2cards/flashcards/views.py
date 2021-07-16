@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-
+from django.contrib.auth import login, authenticate
 from .models import Flashcard, FlashcardSet, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
-from .forms import FlashcardCreateForm
+from .forms import FlashcardCreateForm, SignUpForm
 
 
 class FlashcardsListView(ListView):
@@ -77,3 +77,25 @@ class CategoryDetailView(DetailView):
 class SetCategoryDetailView(DetailView):
     model = Category
     template_name = 'flashcards/flashcardset_category.html'
+
+def logged(request):
+    return render(request, 'flashcards/logged.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('logged')
+            # return redirect('flashcards/index.html')
+    else:
+        form = SignUpForm()
+    return render(request, 'flashcards/signup.html', {'form': form})
+
+
+def logout(request):
+    return render(request, 'flashcards/logout')

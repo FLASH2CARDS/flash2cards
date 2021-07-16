@@ -30,8 +30,8 @@ DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = []
 
 # Application definition
-LOCAL_APPS = ['flashcards.apps.FlashcardsAppConfig',
-              'pages',
+LOCAL_APPS = [
+    'flashcards.apps.FlashcardsAppConfig',
               ]
 
 THIRD_PARTY_APPS = [
@@ -47,9 +47,6 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
@@ -72,7 +69,7 @@ ROOT_URLCONF = 'flash2cards.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,8 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'flash2cards.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
 
 DATABASES = {
     'mysql': {
@@ -153,23 +149,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'flashcards.CustomUser'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    "django.contrib.auth.backends.ModelBackend",
 
-    # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-LOGIN_REDIRECT_URL = 'index'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'logged'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'index.html'
 
 SITE_ID = 1
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'flashcards.forms.SignupForm'

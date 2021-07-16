@@ -5,25 +5,10 @@ from django.contrib.auth.models import AbstractUser
 from mptt.models import MPTTModel, TreeForeignKey
 
 
+
 class CustomUser(AbstractUser):
-    email = models.EmailField(
-        verbose_name='your mail adress',  # optional, inform what is a login
-        max_length=255,
-        unique=True)
-
-    username = models.CharField(max_length=255, null=True, blank=True)
-    nick = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True, blank=True, default="write something about yourself")  # optional
-    country = models.CharField(max_length=255, null=True, blank=True)  # optional, maybe location or something?
-    is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False)  # something like admin
-    admin = models.BooleanField(default=False)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nick', 'username']
-
-    def __str__(self):
-        return self.nick
+    full_name = models.CharField(max_length=100, blank=False)
+    age = models.PositiveIntegerField(null=True, blank=True)
 
 
 class Category(MPTTModel):

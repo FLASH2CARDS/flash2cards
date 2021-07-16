@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/v4-shims.css"/>
     {% block head %} {% endblock %}
 </head>
-<body>
+<body class="has-background-white-ter">
+
+
 <nav class="navbar is-spaced has-shadow is-fixed-top">
     <div class="navbar-brand">
         <a href="{% url 'flashcards:index' %}">
@@ -31,24 +33,57 @@
 
     <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
-            <a class="navbar-item" href="{% url 'flashcards:index' %}"><span class="subtitle is-6 is-size-7-touch">Home</span></a>
+            <a class="navbar-item" href="{% url 'flashcards:index' %}"><span
+                    class="subtitle is-6 is-size-7-touch">Home</span></a>
             <a class="navbar-item" href="{% url 'flashcards:index' %}">
-                <span class="subtitle is-6 is-size-7-touch has-text-weight-bold" style="color: darkred;">Let's learn!</span>
+                <span class="subtitle is-6 is-size-7-touch has-text-weight-bold"
+                      style="color: darkred;">Let's learn!</span>
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link is-1" href="#"
-                   style="color: lightgrey;"><span class="subtitle is-6 is-size-7-touch">
-                    Flashcards</span>
+                   style="color: lightgrey;"><span class="subtitle is-6 is-size-7-touch">Flashcards</span>
                 </a>
                 <div class="navbar-dropdown is-boxed">
                     <a class="navbar-item" href="{% url 'flashcards:flashcards' %}">Flashcards list</a>
                     <a class="navbar-item" href="{% url 'flashcards:flashcardsets_list' %}">Flashcards sets list </a>
-                    <hr class="navbar-divider">
                 </div>
             </div>
-            <a href="#" class="navbar-item" disabled><span class="subtitle is-6 is-size-7-touch" >Flashcard Manager</span></a>
-            <a href="#" class="navbar-item"><span class="subtitle is-6 is-size-7-touch">Sign Up</span></a>
-            <a href="#" class="navbar-item"><span class="subtitle is-6 is-size-7-touch">Log In</span></a>
+            {% if user.is_authenticated %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link is-1" href="#"
+                   style="color: lightgrey;"><span class="subtitle is-6 is-size-7-touch">Flashcards Manager</span>
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-link" href="{% url 'flashcards:create_flashcard' %}">Create Flashcard</a>
+                    <a class="navbar-item" href="#">Create Set</a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="#">Manage your Flashcards</a>
+                    <a class="navbar-item" href="#">Manage your Sets</a>
+                </div>
+            </div>
+            {% endif %}
+            <div class="is-divider-vertical" style="margin-left: 20px;"></div>
+
+            <div class="level">
+                {% if user.is_authenticated %}
+                <p class="is-size-6 is-size-7-touch is-uppercase">Hi {{ user.full_name }}</p>
+                <p><a href="{% url 'logout' %}" class="navbar-item">Log Out</a></p>
+                {% else %}
+                <div class="is-divider-vertical" style="margin-left: 20px;">
+                    <p class="is-size-6 is-size-7-touch has-text-centered">
+                        You are NOT logged IN</p>
+                    <p class="has-text-centered" style="color:green">Log IN for MORE options -></p>
+                </div>
+                <p style="margin-left:20px;">
+                    <a href="{% url 'login' %}" class="navbar-item has-text-weight-bold" style="color:#478202;">Log
+                        In</a>
+                    <a href="{% url 'signup' %}" class="navbar-item has-text-weight-bold" style="color:#850701;">Sign
+                        Up</a>
+                </p>
+                {% endif %}
+            </div>
+
+
         </div>
     </div>
 </nav>

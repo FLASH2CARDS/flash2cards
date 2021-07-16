@@ -16,7 +16,7 @@ urlpatterns = [
     path('flashcard/<int:pk>/delete', FlashcardDeleteView.as_view(), name='flashcard_delete'),
     path('category/<int:pk>', CategoryDetailView.as_view(), name='category_detail'),
     path('set/category/<int:pk>', SetCategoryDetailView.as_view(), name='set_category_detail'),
-    path('flashcardsets/', FlashcardSetListView.as_view(), name='flashcardsets'),
+    path('flashcardsets_list/', FlashcardSetListView.as_view(), name='flashcardsets_list'),
     path('flashcardset/<int:pk>', FlashcardSetDetailView.as_view(), name='flashcardset_detail')
 
 ]

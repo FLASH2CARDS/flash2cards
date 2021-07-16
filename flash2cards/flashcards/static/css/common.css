@@ -13,17 +13,16 @@ h6 {
 
 .navbar {
     padding: 1rem 2rem 1rem 2rem;
-    background: linear-gradient(90deg, rgba(195, 81, 0, 1) 0%, rgba(255, 199, 42, 1) 12%, rgba(255, 179, 0, 1) 18%, rgba(195, 81, 0, 1) 100%);
-    /*background: linear-gradient(180deg, rgba(255,179,0,0.6979166666666667) 0%, rgba(255,199,42,0.6951155462184874) 41%, rgba(195,81,0,0.7035189075630253) 100%);*/
+    background: linear-gradient(188deg, rgba(255,160,14,1) 0%, rgba(255,218,116,1) 27%, rgba(255,160,14,1) 100%);
     border-bottom: 1px solid rgb(201, 201, 201);
 }
 
 .tile.is-child.box.has-background-white-ter {
-    background: linear-gradient(180deg, rgba(218,218,218,1) 0%, rgba(244,244,244,1) 25%, rgba(218,218,218,1) 100%);
+    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(242,242,242,1) 7%, rgba(218,218,218,1) 100%);
 }
 
 .tile.has-background-grey-lighter {
-    background: linear-gradient(180deg, rgba(218,218,218,1) 0%, rgba(244,244,244,1) 25%, rgba(218,218,218,1) 100%);
+    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(242,242,242,1) 7%, rgba(218,218,218,1) 100%);
 }
 
 li a {
