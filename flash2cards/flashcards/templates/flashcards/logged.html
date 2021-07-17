@@ -1,3 +1,16 @@
-<h2>Flash2Cards </h2>
+{% extends 'flashcards/base.html' %}
 
-<a href="{% url 'flashcards:index' %}">Wroc do strony startowej</a>
+{% block title %} Success! {% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <br>
+
+    <div class="notification is-warning is-light has-text-centered">
+        <h4> {{ "Welcome! " | upper }}</h4><br>
+        <h4> {{ "You are IN!"}}</h4>
+    </div>
+
+
+</div>
+{% endblock %}

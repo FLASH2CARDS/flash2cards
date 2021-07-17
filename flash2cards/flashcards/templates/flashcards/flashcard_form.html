@@ -3,16 +3,19 @@
 {% block title %} Tworzenie fiszki {% endblock %}
 
 {% block main_content %}
-<h4> {{ "towrzenie fiszki" | upper }}</h4>
+<div class="section">
+    <br>
+    <h4> {{ "towrzenie fiszki" | upper }}</h4>
 
-<div class="form-group"></div>
-<form method="POST" novalidate>
+    <div class="form-group"></div>
+    <form method="POST" novalidate>
 
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-secondary">Zapisz</button>
 
-</form>
+    </form>
+</div>
 </div>
 
 

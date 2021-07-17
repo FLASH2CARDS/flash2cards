@@ -1,11 +1,24 @@
-<h2>Flash2Cards Login</h2>
+{% extends 'flashcards/base.html' %}
 
-<a href="{% url 'flashcards:index' %}">Home</a> /
-<a href="{% url 'signup' %}">Sign up</a>
+{% block title %} F2C Log IN {% endblock %}
 
-<h2>Login</h2>
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Login</button>
-</form>
+{% block main_content %}
+<div class="section">
+    <br>
+
+    <div class="notification is-warning is-light has-text-centered"><h4> {{ "Flash2Cards Login" | upper }}</h4></div>
+
+    <div class="columns is-mobile is-centered">
+
+
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">LogIn</button>
+        </form>
+                <a href="{% url 'flashcards:index' %}">Home</a> /<a href="{% url 'signup' %}">Sign up</a>
+        <br><br>
+    </div>
+</div>
+{% endblock %}

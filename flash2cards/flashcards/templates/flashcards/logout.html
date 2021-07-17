@@ -1,4 +1,14 @@
-<h2>Flash2Cards Logout</h2>
-You are logged out
+{% extends 'flashcards/base.html' %}
 
-<a href="{% url 'flashcards:index' %}">Wroc do strony startowej</a>
+{% block title %} Log OUT {% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <br>
+
+    <div class="notification is-warning is-light has-text-centered">
+        <h4> {{ "Bye Bye! ...to the next time." }}</h4><br>
+    </div>
+
+</div>
+{% endblock %}

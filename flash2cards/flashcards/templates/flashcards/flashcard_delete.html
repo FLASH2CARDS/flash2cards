@@ -3,12 +3,12 @@
 {% block title %} Usuń fiszkę z bazy fiszek {% endblock %}
 
 {% block main_content %}
-<div class="section">
+<div class="section has-text-centered">
     <br>
     <h4> {{ "FLASHCARD DELETE" | upper }}</h4><br>
     <h4> You are about to DELETE: "{{ flashcard.avers }}"</h4>
     <br>
-    <div class="page-flip">
+    <div class="notification is-warning is-light">
         <form method="POST" novalidate>
             {% csrf_token %}
             <hr>
