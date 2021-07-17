@@ -3,20 +3,24 @@
 {% block title %} Usuń fiszkę z bazy fiszek {% endblock %}
 
 {% block main_content %}
-<br>
-<h4> {{ "Usuwanie fiszki" | upper }}</h4><br>
-<h4> Usuwanie fiszki: {{ flashcard.avers }}</h4>
-<br>
-<div class="page-flip">
-<form method="POST" novalidate>
-        {% csrf_token %}
-        <hr>
-        <h6>Po usunięciu treść fiszki nie będzie dostępna dla Ciebie i innych użytkowników!</h6>
-        <hr>
-        <button class="btn btn-danger btn-sm">! USUŃ FISZKĘ !</button>
-        <a href="{% url 'flashcards:flashcards' %}"><button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button></a>
+<div class="section">
+    <br>
+    <h4> {{ "FLASHCARD DELETE" | upper }}</h4><br>
+    <h4> You are about to DELETE: "{{ flashcard.avers }}"</h4>
+    <br>
+    <div class="page-flip">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <hr>
+            <h6>After DELETE action the flashcard won't be accesible for You and other users!</h6><br>
+            <button class="button is-danger is-outlined"><strong>! DELETE FLASHCARD !</strong></button>
 
-</form>
+
+        </form>
+        <hr>
+        <a href="{% url 'flashcards:flashcards' %}">
+            <button class="button is-info is-outlined">Back to flashcards list</button>
+        </a>
+    </div>
 </div>
-
 {% endblock %}
