@@ -66,7 +66,7 @@
 
             <div class="level">
                 {% if user.is_authenticated %}
-                <p class="is-size-6 is-size-7-touch is-uppercase">Hi {{ user.full_name }}</p>
+                <p class="is-size-6 is-size-7-touch">Hi {{ user.full_name | upper }}</p>
                 <p><a href="{% url 'logout' %}" class="navbar-item">Log Out</a></p>
                 {% else %}
                 <div class="is-divider-vertical" style="margin-left: 20px;">
