@@ -13,10 +13,13 @@
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
         <tr>
-            <th><span class="category">{{ "zestaw fiszek" | upper }}</span></th>
-            <th><span class="category">{{ "Kategoria" | upper }}</span></th>
-            <th><span class="category">{{ "Utworzony przez:" | upper }}</span></th>
+            <th><span class="category">{{ "Flashcard Set" | upper }}</span></th>
+            <th><span class="category">{{ "Category" | upper }}</span></th>
+            <th><span class="category">{{ "Created By:" | upper }}</span></th>
         </tr>
+        </thead>
+
+        <tbody>
         {% for flashcardset in flashcardsets %}
         <tr>
             <td>
@@ -29,13 +32,14 @@
                     <span class="is-size-6 is-size-7-touch">{{ flashcardset.category }}</span>
                 </a>
             </td>
-            <td><span class="category">{{ flashcardset.user }}  </span></td>
+            <td><span class="category">{{ flashcardset.user }}</span></td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
 
     {% else %}
-    Nie utworzono jeszcze żadnego zestawu fiszek
+    Sorry. No flashacards set created yet!
     {% endif %}
 
     <br>
@@ -46,7 +50,7 @@
         <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
         {% endif %}
 
-        <span class="category">  Strona {{ page_obj.number }} </span>
+        <span class="category">  Page {{ page_obj.number }} </span>
 
         {% if page_obj.has_next %}
         <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
