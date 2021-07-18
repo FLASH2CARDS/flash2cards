@@ -3,11 +3,14 @@
 {% block title %}FLASHCARD DETAILS{% endblock %}
 
 {% block main_content %}
-<br>
-<span class="tabl_item">Kategoria: <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>&#10137;{{ flashcard.category }}</strong></a></span>
-<br>
-<span class="category">Utworzona przez: {{ flashcard.user }} </span><br>
-<span class="category">Data ostatniej edycji: {{ flashcard.modification_date|date:"Y-m-d" }}</span>
+<div class="section">
+    <br>
+    <div class="box">
+        <span class="tabl_item">Category: <a
+                href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>&#10137;{{ flashcard.category }}</strong></a></span>
+        <br>
+        <span class="category">Created By: {{ flashcard.user }} </span><br>
+        <span class="category">Last edited on: {{ flashcard.modification_date|date:"Y-m-d" }}</span>
 
         <hr>
 
@@ -43,4 +46,3 @@
     </div>
 </div>
 {% endblock %}
-

@@ -3,8 +3,9 @@
 {% block title %}Fiszki z kategorii{% endblock %}
 
 {% block main_content %}
+<div class="section">
 <br>
-<h4>{{ "Fiszki z kategorii: " }}{{ object.category_name | upper }}</h4>
+<h4>{{ "Flashcards from category: " }}{{ object.category_name | upper }}</h4>
 
 <hr>
 {% if object %}
@@ -54,6 +55,7 @@
 <a href="{% url 'flashcards:flashcards' %}">
     <button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button>
 </a>
+    </div>
 {% endblock %}
 
 

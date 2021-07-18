@@ -3,18 +3,30 @@
 {% block title %} Edycja treści fiszki {% endblock %}
 
 {% block main_content %}
-<h4> {{ "edycja fiszki" | upper }}</h4>
+<div class="section">
 
-<div class="form-group">
-<form method="POST" novalidate>
+    <br>
+    <h4> {{ "editing the content of the flashcard" | upper }}</h4>
+    <div class="notification is-warning is-light has-text-centered">{{ flashcard.avers }}</div>
 
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success btn-sm">Zapisz zmiany</button>
-        <a href="{% url 'flashcards:flashcards' %}"><button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button></a>
 
-</form>
+    <div class="columns is-mobile is-centered">
+<!--        <div class="form">-->
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button class="button is-small is-success is-outlined"><strong>SAVE changes</strong></button>
+            </form>
+
+            <a href="{% url 'flashcards:flashcards' %}">
+                <button class="button is-small is-info is-outlined"><strong>BACK to flashcards list</strong>
+                </button>
+            </a>
+<!--        </div>-->
+
+    </div>
 </div>
-
 {% endblock %}
+
 
