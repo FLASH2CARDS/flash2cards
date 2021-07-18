@@ -6,25 +6,12 @@ from .models import Flashcard, CustomUser
 User = get_user_model()
 
 
-class CustomUserCreationForm(UserCreationForm):
+class SignUpForm(UserCreationForm):
+    full_name = forms.CharField(max_length=100, help_text='Required. 100 characters or fewer.')
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'nick', 'description')
-
-
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'email', 'nick', 'description')
-
-
-class SignupForm(forms.ModelForm):
-    class Meta:
-        model = get_user_model()
-        fields = ['email', 'username', 'nick']
-
-    def save(self, user):
-        user.save()
+        fields = UserCreationForm.Meta.fields + ('full_name', 'age',)
 
 
 class FlashcardCreateForm(forms.ModelForm):
@@ -40,3 +27,4 @@ class FlashcardCreateForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
             'user': forms.Select(attrs={'class': 'form-control'})
         }
+

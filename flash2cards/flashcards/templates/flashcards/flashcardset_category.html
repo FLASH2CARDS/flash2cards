@@ -8,8 +8,8 @@
 
 <hr>
 {% if object %}
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 
-<table>
     <tr>
         <th><span class="category"> &#10137;{{ " Tytuł zestawu fiszek" | upper }}</span></th>
         <th><span class="category">{{ "| Utworzony przez: " | upper }}</span></th>
@@ -40,6 +40,7 @@
     {% if page_obj.has_previous %}
     <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
     {% endif %}
+
 
     <span class="category">  Strona {{ page_obj.number }} </span>
 
