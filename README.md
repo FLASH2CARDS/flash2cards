@@ -101,7 +101,6 @@ Separate access for **_registered_** and **_unregistered_** user.
 
 - Python 3.8
 - Django 3.2
-- django-allauth 0.42.0
 - django-ckeditor 6.0
 - django-mptt 0.12.0
 - python-dotenv 0.17
