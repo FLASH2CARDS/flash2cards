@@ -6,7 +6,9 @@
 <div class="section">
     <br>
 
-    <div class="notification is-warning is-light has-text-centered"><h4> {{ "Flash2Cards Sign up" | upper }}</h4></div>
+    <div class="notification is-warning is-light has-text-centered">
+        <h4> {{ "Flash2Cards Sign up" | upper }}</h4>
+    </div>
 
     <div class="columns is-mobile is-centered">
         <form method="post">
@@ -16,14 +18,14 @@
                 <label class="label">{{ field.label_tag }}</label>
                 {{ field }}
                 {% if field.help_text %}
-                <!--            <br><small style="color: green">{{ field.help_text }}</small>-->
                 <br><small class="help is-success">{{ field.help_text }}</small>
                 {% endif %}
                 {% for error in field.errors %}
             <p class="help is-danger">{{ error }}</p>
             {% endfor %}
 
-            </p><br>
+            </p>
+            <br>
             {% endfor %}
             <button type="submit" class="button is-small is-success is-outlined"><strong>Sign Up</strong></button>
         </form>
