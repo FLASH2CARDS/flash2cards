@@ -1,0 +1,84 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %}FLASHCARD DETAILS{% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <br>
+    <br>
+    <div class="columns is-mobile is-centered">
+        <div class="column is-10">
+
+            <div class="tags has-addons">
+                <span class="tag is-warning" style="background: #bbbbbb; color:#ffffff;">Created by</span>
+                <span class="tag is-info" style="background: white; color:#850701;">{{ flashcard.user }}</span>
+            </div>
+            <div class="tags has-addons">
+                <span class="tag is-warning" style="background: #bbbbbb; color:#ffffff;">Edited on</span>
+                <span class="tag is-info" style="background: white; color:#850701;">{{ flashcard.modification_date|date:"Y-m-d" }}</span>
+            </div>
+
+            <div class="card has-text-centered" style="max-width: 20rem;">
+                <header class="card-header">
+                    <p class="card-header-title">AVERS</p>
+                    <div class="tags has-addons">
+                        <span class="tag is-light">Category</span>
+                        <span class="tag is-success is-light">
+                            <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">
+                                <strong style="color:green;">{{ flashcard.category | upper }}</strong>
+                            </a>
+                        </span>
+                    </div>
+                </header>
+                <div class="card-content">
+                    <p class="card-text is-size-6 is-size-7-touch" style="color:#025250;">{{ flashcard.avers }}</p>
+                </div>
+                <footer class="card-footer">
+                    <span class="card-footer-item is-size-7">Created by: {{ flashcard.user }} </span>
+                    <span class="card-footer-item is-size-7">Edited on: {{ flashcard.modification_date|date:"Y-m-d" }}</span>
+                </footer>
+
+            </div>
+            <br>
+
+            <div class="card has-text-centered" style="max-width: 20rem;">
+                <div class="fcard">
+                    <header class="card-header">
+                        <p class="card-header-title">REVERS</p>
+                        <div class="tags has-addons">
+                            <span class="tag is-light">Category</span>
+                            <span class="tag is-success is-light">
+                    <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">
+                    <strong style="color:green;">{{ flashcard.category | upper }}</strong>
+                    </a>
+                </span>
+                        </div>
+                    </header>
+                    <div class="card-content">
+                        <p class="card-text is-size-6 is-size-7-touch" style="color:#02516f;">{{ flashcard.revers }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <a href="{% url 'flashcards:flashcards' %}">
+                <button class="button is-small is-info is-outlined" style="margin:5px;"><strong>BACK to flashcards
+                    list</strong></button>
+            </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'flashcards:flashcard_update' flashcard.pk %}">
+                <button class="button is-small is-success is-outlined" style="margin:5px;"><strong>EDIT
+                    Flashcard</strong>
+                </button>
+            </a>
+            <a href="{% url 'flashcards:flashcard_delete' flashcard.pk %}">
+                <button class="button is-small is-danger is-outlined" style="margin:5px;">
+                    <span><strong>DELETE Flashcard</strong></span>
+                </button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

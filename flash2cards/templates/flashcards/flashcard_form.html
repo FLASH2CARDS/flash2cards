@@ -1,0 +1,36 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %} Create Flashcard {% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <br>
+    <h4> {{ "create new flashcard" | upper }}</h4>
+
+    <div class="columns is-mobile is-centered">
+        <div class="column is-10">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    <label class="label">{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <br><small class="help is-success">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+
+                </p>
+                <br>
+                {% endfor %}
+                <button type="submit" class="button is-small is-success"><strong>SAVE flashcard</strong></button>
+            </form>
+
+        </div>
+    </div>
+
+
+    {% endblock %}
+

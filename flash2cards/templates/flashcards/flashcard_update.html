@@ -1,0 +1,43 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %} Edycja treści fiszki {% endblock %}
+
+{% block main_content %}
+<div class="section">
+
+    <br>
+    <h4> {{ "editing the content of the flashcard" | upper }}</h4><br>
+
+
+    <div class="columns is-mobile is-centered">
+        <div class="column is-10">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    <label class="label">{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <br><small class="help is-success">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+
+                </p>
+                <br>
+                {% endfor %}
+                <button type="submit" class="button is-small is-success"><strong>SAVE changes</strong></button>
+            </form>
+
+            <a href="{% url 'flashcards:flashcards' %}">
+                <button class="button is-small is-info is-outlined"><strong>BACK to flashcards list</strong>
+                </button>
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
