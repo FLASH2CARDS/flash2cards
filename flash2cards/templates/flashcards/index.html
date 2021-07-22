@@ -9,8 +9,8 @@
 
             <!--###### Category selector ######-->
             <div class="tile is-6 is-parent">
-                <div class="tile is-child box has-background-white-ter">
-                    <span>Select category:
+                <div class="tile notification is-success is-child has-background-white-ter">
+                    <span class="is-size-6 is-size-7-touch" style="color:#616161;">Select flashcards by:
                         <div class="dropdown">
                             <div class="dropdown-trigger">
                                 <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -39,12 +39,23 @@
 
             <!--###### Search input ######-->
             <div class="tile is-parent">
-                <div class="tile is-child box has-background-white-ter">
-                    <div class="field">
-                        <p class="control has-icons-right">
-                            <input class="input" type="search" placeholder="Search by keyword/tag..."/>
-                            <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
-                        </p>
+                <div class="tile notification is-success is-child has-background-white-ter">
+                    <div>
+                        <form method="post" action="{% url 'flashcards:search_results'  %}">
+                            {% csrf_token %}
+                            <div class="field is-grouped">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text"
+                                           placeholder="Search by: a word, definition part, question part etc."
+                                           name="searched">
+                                </p>
+                                <p class="control">
+                                    <button class="button is-light">
+                                        Search
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -65,25 +76,22 @@
                             <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                 <thead>
                                 <tr>
-                                    <th><span class="category"> &#10137;{{ " Flashcard Avers" | upper }}</span></th>
+                                    <th><span class="category">{{ " Flashcard Avers" | upper }}</span></th>
                                     <th><span class="category">{{ "Category " | upper }}</span></th>
                                     <th><span class="category">{{ "Created by: " | upper }}</span></th>
                                 </tr>
                                 </thead>
-                                <!--                                ten_flashcards = Flashcard.objects.all().order_by('-modification_date')[:10]-->
                                 {% for flashcard in flashcards %}
-                                <div class="flashcard-in-list">
-                                    <tr>
-                                        <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span
-                                                class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
-                                        </td>
-                                        <td><span class="category"><a
-                                                href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
-                                        </td>
-                                        <td><span class="category"> {{ flashcard.user }}  </span></td>
-                                    </tr>
-
-                                </div>
+                                <tr>
+                                    <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}"><span
+                                            class="tabl_item"><i
+                                            class="far fa-sticky-note"></i> {{ flashcard.avers }}</span></a>
+                                    </td>
+                                    <td><span class="category"><a
+                                            href="{% url 'flashcards:category_detail' flashcard.category.pk %}"><strong>{{ flashcard.category }}</strong></a></span>
+                                    </td>
+                                    <td><span class="category"> {{ flashcard.user }}  </span></td>
+                                </tr>
 
                                 {% endfor %}
                             </table>
@@ -107,7 +115,11 @@
                             <table class="table is-narrow is-striped is-hoverable  is-fullwidth">
                                 <thead>
                                 <tr>
-                                    <th><span class="category">&#10137; {{ "Flashcard Set" | upper }}</span></th>
+                                    <th>
+                                        <span class="category">
+                                            <i class="far fa-images"></i> {{ "Flashcard Set" | upper }}
+                                        </span>
+                                    </th>
                                     <th><span class="category">{{ "Category" | upper }}</span></th>
                                     <th><span class="category">{{ "Created by:" | upper }}</span></th>
                                 </tr>
@@ -116,10 +128,13 @@
                                 {% for flashcardset in flashcardsets %}
                                 <tr>
                                     <td><a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}"> <span
-                                            class="tabl_item">&#10137; {{ flashcardset.set_name }}</span>
+                                            class="tabl_item"><i class="far fa-images"></i> {{ flashcardset.set_name }}</span>
                                     </a></td>
-                                    <td><span class="category"><a
-                                            href="{% url 'flashcards:set_category_detail' flashcardset.category.pk %}">{{ flashcardset.category }}</a></span>
+                                    <td><span class="category">
+                                            <a href="{% url 'flashcards:set_category_detail' flashcardset.category.pk %}">
+                                                {{ flashcardset.category }}
+                                            </a>
+                                    </span>
                                     </td>
                                     <td><span class="category">{{ flashcardset.user }}</span></td>
                                 </tr>
@@ -146,10 +161,15 @@
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            <p class="box is-size-7-touch">Flashcards created.<br>
-                                <span class="has-text-weight-bold">Total: {{ cards_count }}</span></p>
-                            <p class="box is-size-7-touch">Flashcards Sets created.<br>
-                                <span class="has-text-weight-bold">Total: {{ sets_count }}</span></p>
+                            <p class="box is-size-7-touch">Total flashcards created:
+                                <span class="has-text-weight-bold is-size-4 is-size-5-touch"> {{ cards_count }}</span>
+                            </p>
+                            <p class="box is-size-7-touch">Total flashcards sets created:
+                                <span class="has-text-weight-bold is-size-4 is-size-5-touch"> {{ sets_count }}</span>
+                            </p>
+                            <p class="box is-size-7-touch">Total comments added:
+                                <span class="has-text-weight-bold is-size-4 is-size-5-touch"> {{ comments_count }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ urlpatterns = [
     path('category/<int:pk>', CategoryDetailView.as_view(), name='category_detail'),
     path('set/category/<int:pk>', SetCategoryDetailView.as_view(), name='set_category_detail'),
     path('flashcardsets_list/', FlashcardSetListView.as_view(), name='flashcardsets_list'),
-    path('flashcardset/<int:pk>', FlashcardSetDetailView.as_view(), name='flashcardset_detail')
+    path('flashcardset/<int:pk>', FlashcardSetDetailView.as_view(), name='flashcardset_detail'),
+    path('search_results/', views.search_results, name='search_results')
 
 ]

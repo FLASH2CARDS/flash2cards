@@ -1,59 +1,71 @@
 {% extends 'flashcards/base.html' %}
 
-{% block title %}Zestaw fiszek {% endblock %}
+{% block title %}Flashcards set {% endblock %}
 
 {% block main_content %}
-<br>
-<h4>{{ "Fiszki z zestawu: " }}{{ object.set_name | upper }}</h4>
-
-<hr>
-{% if object %}
-
-<table>
-    <tr>
-        <th><span class="category"> &#10137;{{ " Awers fiszki" | upper }}</span></th>
-        <th><span class="category">{{ "| Kategoria " | upper }}</span></th>
-        <th><span class="category">{{ "| Utworzona przez: " | upper }}</span></th>
-    </tr>
-
-    {% for flashcard in object.flashcardset_set.all %}
-    <div class="flashcard-in-list">
-        <tr>
-            <td><a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">
-                <span class="tabl_item">&#10137; {{ flashcard.avers }}</span></a>
-            </td>
-            <td> <span class="category"><a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">{{ flashcardset.category }}</a></span> </td>
-            <td><span class="category"> {{ flashcard.user }}  </span></td>
-        </tr>
-
+<div class="section">
+    <br>
+    <div class="box has-text-centered">
+        {{ "flashcards set: " | upper }}<strong style="color:#850701;">{{ object.set_name | upper }}</strong>
     </div>
-    {% endfor %}
 
-</table>
+    {% if object %}
 
-{% else %}
-   <h4> Nie dodano jeszcze żadnej fiszki w tym zestawie</h4>
-{% endif %}
-
-
-        <br>
-        <hr>
-        {% if page_obj.has_next or page_obj.has_previous %}
-        <div class="page-flip">
-            {% if page_obj.has_previous %}
-            <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
-            {% endif %}
-
-            <span class="category">  Strona {{ page_obj.number }} </span>
-
-            {% if page_obj.has_next %}
-            <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
-            {% endif %}
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr class="notification is-warning">
+            <th><span class="category">{{ " flashcard avers" | upper }}</span></th>
+            <th><span class="category">{{ "category " | upper }}</span></th>
+            <th><span class="category">{{ "created by: " | upper }}</span></th>
+        </tr>
+        {{ Flashcard.objects.all }}
+        </thead>
+        {% for flashcard in object.flashcardset_set.all %}
+        <div class="flashcard-in-list">
+            <tr>
+                <td>
+                    <a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">
+                    <span class="tabl_item"><i class="far fa-sticky-note"></i> {{ flashcard.avers }}</span>
+                    </a>
+                </td>
+                <td>
+                    <span class="category">
+                        <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">{{ flashcardset.category }}
+                        </a>
+                    </span>
+                </td>
+                <td><span class="category"> {{ flashcard.user }} </span></td>
+            </tr>
         </div>
-        <hr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+    <h4> Sorry, no flashcard added yet.</h4>
+    {% endif %}
+
+
+    <br>
+    <hr>
+    {% if page_obj.has_next or page_obj.has_previous %}
+    <div class="page-flip">
+        {% if page_obj.has_previous %}
+        <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
         {% endif %}
-<hr>
-<a href="{% url 'flashcards:flashcards' %}">
-    <button type="button" class="btn btn-secondary btn-sm">Powrót do listy fiszek</button>
-</a>
+
+        <span class="category">  Page {{ page_obj.number }} </span>
+
+        {% if page_obj.has_next %}
+        <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
+        {% endif %}
+    </div>
+    <hr>
+    {% endif %}
+    <hr>
+    <a href="{% url 'flashcards:flashcardsets_list' %}">
+        <button class="button is-small is-info is-outlined" style="margin:5px;"><strong>Back to flashcard sets
+            list</strong></button>
+    </a>
+</div>
 {% endblock %}

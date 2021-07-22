@@ -17,12 +17,12 @@ h6 {
     border-bottom: 1px solid rgb(201, 201, 201);
 }
 
-.tile.is-child.box.has-background-white-ter {
-    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(242,242,242,1) 7%, rgba(218,218,218,1) 100%);
+.tile.notification.is-child.has-background-white-ter {
+    background: radial-gradient(circle, rgba(224,224,224,1) 7%, rgba(222,222,222,1) 100%);
 }
 
 .tile.has-background-grey-lighter {
-    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(242,242,242,1) 7%, rgba(218,218,218,1) 100%);
+    background: radial-gradient(circle, rgba(224,224,224,1) 7%, rgba(222,222,222,1) 100%);
 }
 
 li a {
