@@ -1,0 +1,136 @@
+{% extends 'flashcards/base.html' %}
+
+{% block title %}Search results{% endblock %}
+
+{% block main_content %}
+<div class="section">
+    <br>
+    <div class="box has-text-centered">
+        RESULTS of your query for: <strong style="color:#850701;">" {{ searched }} "</strong>
+    </div>
+
+    {% if searched %}
+    <div class="columns is-desktop">
+        <div class="column">
+
+
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <div class="tags has-addons">
+                <span class="tag is-info" style="background: #7b7b7b;">
+                    <strong style="color:#ffffff;">{{ cards_count }}</strong>
+                </span>
+                    <span class="tag is-warning" style="background: #bbbbbb; color:#ffffff;">
+                        flashcards with your query in AVERS or REVERS
+                    </span>
+                </div>
+                <thead>
+                <tr class="notification is-warning">
+                    <th><span class="category">{{ " flashcard avers" | upper }}</span></th>
+                    <th><span class="category">{{ "category " | upper }}</span></th>
+                </tr>
+                </thead>
+                {% for flashcard in flashcards %}
+                <tr>
+                    <td>
+                        <a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">
+                            <span class="tabl_item"><i class="far fa-sticky-note"></i> {{ flashcard.avers }}</span>
+                        </a>
+                    </td>
+                    <td>
+                    <span class="category">
+                        <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">{{ flashcard.category }}
+                        </a>
+                    </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="column">
+
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <div class="tags has-addons">
+                <span class="tag is-info" style="background: #7b7b7b;">
+                    <strong style="color:#ffffff;">{{ sets_count }}</strong>
+                </span>
+                    <span class="tag is-warning" style="background: #bbbbbb; color:#ffffff;">
+                        flashcard sets with your query in the SET NAME
+                    </span>
+                </div>
+                <thead>
+                <tr class="notification is-warning">
+                    <th><span class="category">{{ " flashcard set name" | upper }}</span></th>
+                    <th><span class="category">{{ "category " | upper }}</span></th>
+                </tr>
+                </thead>
+                {% for flashcardset in flashcardsets %}
+                <tr>
+                    <td>
+                        <a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}">
+                            <span class="tabl_item"><i class="far fa-images"></i> {{ flashcardset.set_name }}</span>
+                        </a>
+                    </td>
+                    <td>
+                    <span class="category">
+                        <a href="{% url 'flashcards:category_detail' flashcardset.category.pk %}">{{ flashcardset.category }}
+                        </a>
+                    </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="column">
+        <div class="tags has-addons">
+                <span class="tag is-info" style="background: #7b7b7b;">
+                    <strong style="color:#ffffff;">{{ cat_count }}</strong>
+                </span>
+            <span class="tag is-warning" style="background: #bbbbbb; color:#ffffff;">
+                categories with yur query in CATEGORY NAME
+            </span>
+        </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+            <tr class="notification is-warning">
+                <th><span class="category">{{ " category" | upper }}</span>
+                </th>
+            </tr>
+            </thead>
+            {% for category in categories %}
+            <tr>
+                <td>
+                    <span class="category">
+                        <a href="{% url 'flashcards:category_detail' flashcard.category.pk %}">{{ category.category_name }}
+                        </a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% else %}
+<h4 class="is-size-6 is-size-7-touch"> Sorry, nothing found. <br> Maybe you forgot to write your query in search box on
+    <a href="{% url 'flashcards:index' %}"><strong>Home Page?</strong></a></h4>
+{% endif %}
+
+
+<br>
+<hr>
+{% if page_obj.has_next or page_obj.has_previous %}
+<div class="page-flip">
+    {% if page_obj.has_previous %}
+    <a class="page" href="?page={{ page_obj.previous_page_number }}"> < << </a>
+    {% endif %}
+
+    <span class="category">  Page {{ page_obj.number }} </span>
+
+    {% if page_obj.has_next %}
+    <a class="page" href="?page={{ page_obj.next_page_number }}"> >> > </a>
+    {% endif %}
+</div>
+<hr>
+{% endif %}
+</div>
+{% endblock %}

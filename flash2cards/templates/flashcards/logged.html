@@ -5,12 +5,15 @@
 {% block main_content %}
 <div class="section">
     <br>
-
-    <div class="notification is-warning is-light has-text-centered">
-        <h4> {{ "Welcome! " | upper }}</h4><br>
-        <h4> {{ "You are IN!"}}</h4>
-    </div>
-
-
+    <article class="message is-success">
+        <div class="message-header">
+            <p class="is-size-6 is-size-7-touch has-text-centered has-text-weight-semibold">Welcome  {{ user.email }} ! </p>
+            <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+            <strong>Notice that as a logged in user you have access to additional options!</strong> <br>
+            You will find them in our menu > <strong>Flashcard Manager</strong> dropdown. Enjoy creating new flashcards!
+        </div>
+    </article>
 </div>
 {% endblock %}

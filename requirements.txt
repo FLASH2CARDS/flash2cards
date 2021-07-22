@@ -1,8 +1,9 @@
 Django~=3.2
 django-ckeditor~=6.0
 django-mptt~=0.12.0
+django-tinymce~=3.3.0
 mysqlclient~=2.0.3
 python-dotenv~=0.17.1
 pytest~=6.2.4
-
+pytest-django~=4.4.0
 

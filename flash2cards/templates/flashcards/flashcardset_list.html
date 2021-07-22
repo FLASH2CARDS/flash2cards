@@ -5,15 +5,15 @@
 {% block main_content %}
 <div class="section">
     <br>
-    <h4>{{ "Flashcards Sets List" | upper }}</h4>
+    <h4>{{ "Ready flashcards sets list" | upper }}</h4>
     <br>
     {% if flashcardsets %}
 
 
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
-        <tr>
-            <th><span class="category">{{ "Flashcard Set" | upper }}</span></th>
+        <tr  class="notification is-warning">
+            <th><span class="category"><i class="far fa-images"></i> {{ "Flashcard Set" | upper }}</span></th>
             <th><span class="category">{{ "Category" | upper }}</span></th>
             <th><span class="category">{{ "Created By:" | upper }}</span></th>
         </tr>
@@ -24,7 +24,7 @@
         <tr>
             <td>
                 <a href="{% url 'flashcards:flashcardset_detail' flashcardset.pk %}">
-                    <span class="is-size-6 is-size-7-touch">&#10137; {{ flashcardset.set_name }}</span>
+                    <span class="is-size-6 is-size-7-touch"><i class="far fa-images"></i> {{ flashcardset.set_name }}</span>
                 </a>
             </td>
             <td>

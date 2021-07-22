@@ -102,11 +102,13 @@ Separate access for **_registered_** and **_unregistered_** user.
 - Python 3.8
 - Django 3.2
 - django-ckeditor 6.0
-- django-mptt 0.12.0
 - python-dotenv 0.17
+- django-mptt 0.12.0
+- django-tinymce
 - mySQL (mysqlclient 2.0.3)
 - unittest
 - pytest 6.2
+- pytest-django
 - JSON
 
 
@@ -146,11 +148,9 @@ Progress:
 ---
 ### Authors
 
-- Kseniia Galaieva / GitHub: [KseniiaGal](https://github.com/KseniiaGal)
 - Przemek Hinca / GitHub: [pshemekhinca](https://github.com/pshemekhinca)
-- Mateusz Kownacki [joker687](https://github.com/joker687)
 - Michał Przychodzień / GitHub: [MichalPrzychodzien](https://github.com/MichalPrzychodzien)
-- Ewa Szeszko / GitHub: [szeszkoe](https://github.com/szeszkoe)
+
 
 [Back to the Top ^](#FLASH2CARDS)
 

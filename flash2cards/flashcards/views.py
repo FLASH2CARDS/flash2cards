@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
-from .models import Flashcard, FlashcardSet, Category
+from .models import Flashcard, FlashcardSet, Category, Comment
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .forms import FlashcardCreateForm, SignUpForm
+from django.db.models import Q
 
 
 class FlashcardsListView(ListView):
@@ -18,8 +19,27 @@ def index_multi_sections(request):
     sets = FlashcardSet.objects.all()
     fcards = Flashcard.objects.all().order_by('-modification_date')[:7]
     fsets = FlashcardSet.objects.all().order_by('-modification_date')[:7]
-    context = {'flashcards': fcards, "flashcardsets": fsets, "cards_count": cards.count(), "sets_count": sets.count()}
+    comments = Comment.objects.all().order_by('-creation_date')[:7]
+    context = {'flashcards': fcards, "flashcardsets": fsets, "comments": comments, "cards_count": cards.count(),
+               "sets_count": sets.count(),
+               "comments_count": comments.count()}
     return render(request, "flashcards/index.html", context)
+
+
+def search_results(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        flashcards = Flashcard.objects.filter(Q(avers__contains=searched) | Q(revers__contains=searched))
+        flashcardsets = FlashcardSet.objects.filter(set_name__contains=searched)
+        categories = Category.objects.filter(category_name__contains=searched)
+        context = {'searched': searched, 'flashcards': flashcards, 'flashcardsets': flashcardsets,
+                   'categories': categories,
+                   'cards_count': flashcards.count(), "sets_count": flashcardsets.count(),
+                   "cat_count": categories.count()}
+        return render(request, "flashcards/search_results.html", context)
+    else:
+        context = {}
+        return render(request, "flashcards/search_results.html", context)
 
 
 class FlashcardSetListView(ListView):
@@ -78,8 +98,10 @@ class SetCategoryDetailView(DetailView):
     model = Category
     template_name = 'flashcards/flashcardset_category.html'
 
+
 def logged(request):
     return render(request, 'flashcards/logged.html')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -88,10 +110,9 @@ def signup(request):
             user = form.save()
             user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
+            user = authenticate(username=user.email, password=raw_password)
             login(request, user)
             return redirect('logged')
-            # return redirect('flashcards/index.html')
     else:
         form = SignUpForm()
     return render(request, 'flashcards/signup.html', {'form': form})

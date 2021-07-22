@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/common.css' %}"/>
+    <link rel="stylesheet" href="{% static 'flashcards/css/common.css' %}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/v4-shims.css"/>
@@ -18,7 +18,7 @@
     <div class="navbar-brand">
         <a href="{% url 'flashcards:index' %}">
             <figure class="image is-160x60">
-                <img src="{% static 'img/cards-img2.png' %}" alt="Flash2card logo">
+                <img src="{% static 'flashcards/img/cards-img2.png' %}" alt="Flash2card logo">
             </figure>
         </a>
         <span class="navbar-burger burger" data-target="navMenu">
@@ -54,7 +54,7 @@
                    style="color: lightgrey;"><span class="subtitle is-6 is-size-7-touch">Flashcards Manager</span>
                 </a>
                 <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-link" href="{% url 'flashcards:create_flashcard' %}">Create Flashcard</a>
+                    <a class="navbar-item" href="{% url 'flashcards:create_flashcard' %}">Create Flashcard</a>
                     <a class="navbar-item" href="#">Create Set</a>
                     <hr class="navbar-divider">
                     <a class="navbar-item" href="#">Manage your Flashcards</a>
@@ -66,13 +66,13 @@
 
             <div class="level">
                 {% if user.is_authenticated %}
-                <p class="is-size-6 is-size-7-touch">Hi {{ user.full_name | upper }}</p>
+                <p class="is-size-6 is-size-7-touch">Hi {{ user.email }}</p>
                 <p><a href="{% url 'logout' %}" class="navbar-item">Log Out</a></p>
                 {% else %}
                 <div class="is-divider-vertical" style="margin-left: 20px;">
+                    <p class="has-text-centered" style="color:green">Log IN for MORE options -></p>
                     <p class="is-size-6 is-size-7-touch has-text-centered">
                         You are NOT logged IN</p>
-                    <p class="has-text-centered" style="color:green">Log IN for MORE options -></p>
                 </div>
                 <p style="margin-left:20px;">
                     <a href="{% url 'login' %}" class="navbar-item has-text-weight-bold" style="color:#478202;">Log
@@ -96,8 +96,9 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>
-            <strong>Flash2Card</strong> by <a href="https://github.com/FLASH2CARDS/flash2cards">Przemyslaw Hinca &
+        <p class="is-size-7">
+            <strong>Flash2Card</strong> by
+            <a href="https://github.com/FLASH2CARDS/flash2cards" class="is-size-7">Przemyslaw Hinca &
             Michal Przychodzien</a>.
         </p>
     </div>
